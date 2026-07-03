@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="SwiftWing 团队" /><link rel="canonical" href="https://swiftwing001.github.io/SwiftWing-S6-Vtol-Tutorial/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/%E5%87%86%E5%A4%87%E9%80%9A%E4%BF%A1%E9%93%BE%E8%B7%AF/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>准备通信链路 - SwiftWing S6 Vtol 文档</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u51c6\u5907\u901a\u4fe1\u94fe\u8def";
+        var mkdocs_page_input_path = "\u5feb\u901f\u4e0a\u624b\\\u51c6\u5907\u901a\u4fe1\u94fe\u8def.md";
+        var mkdocs_page_url = "/SwiftWing-S6-Vtol-Tutorial/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/%E5%87%86%E5%A4%87%E9%80%9A%E4%BF%A1%E9%93%BE%E8%B7%AF/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> SwiftWing S6 Vtol 文档
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">主页</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">快速上手</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../%E5%BC%80%E7%AE%B1%E7%BB%84%E8%A3%85%E6%B5%8B%E8%AF%95/">开箱组装测试</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../%E8%AE%BE%E5%A4%87%E7%BB%93%E6%9E%84%E6%A3%80%E6%9F%A5/">设备结构检查</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../%E5%BF%AB%E9%80%9F%E9%A3%9E%E8%A1%8C/">快速飞行概览</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../%E9%A3%9E%E8%A1%8C%E5%9C%BA%E5%9C%B0%E5%87%86%E5%A4%87/">飞行场地准备</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../%E7%94%B5%E6%B1%A0%E5%85%85%E7%94%B5/">电池充电</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../%E9%81%A5%E6%8E%A7%E5%99%A8%E5%85%85%E7%94%B5/">遥控器充电</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../%E9%A3%9E%E6%8E%A7%E6%95%99%E7%A8%8B/">飞控教程</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../%E8%B5%B7%E9%A3%9E%E5%89%8D%E5%9C%B0%E9%9D%A2%E6%B5%8B%E8%AF%95/">起飞前地面测试</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">进阶飞行</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../%E8%BF%9B%E9%98%B6%E9%A3%9E%E8%A1%8C/%E6%89%8B%E5%8A%A8%E9%A3%9E%E8%A1%8C%E4%BB%8B%E7%BB%8D/">手动飞行介绍</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../%E8%BF%9B%E9%98%B6%E9%A3%9E%E8%A1%8C/%E8%B5%84%E6%BA%90%E4%B8%8B%E8%BD%BD/">资源下载</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">SwiftWing S6 Vtol 文档</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">准备通信链路</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">准备通信链路</h1>
+<ul>
+<li>硬件准备为每次飞行都需要进行</li>
+<li>软件准备为第一次，按照教程配置软件连接。后续飞行，按需调整对应配置即可</li>
+</ul>
+<h2 id="_2">硬件准备</h2>
+<ol>
+<li>MLRS高频头</li>
+<li>遥控器、接收机</li>
+<li>VtolS3无人机主体</li>
+<li>无人机电池</li>
+<li>电脑</li>
+</ol>
+<h3 id="_3">硬件连接</h3>
+<ol>
+<li>将转接座对准遥控器高频头卡槽，对准排针，确保安装没有虚位</li>
+</ol>
+<p><img alt="1776931255179" src="../image/%E5%87%86%E5%A4%87%E9%80%9A%E4%BF%A1%E9%93%BE%E8%B7%AF/1776931255179.png" /></p>
+<ol>
+<li>根据高频头上标识，将天线连接到高频头上</li>
+</ol>
+<p><img alt="1776931158160" src="../image/%E5%87%86%E5%A4%87%E9%80%9A%E4%BF%A1%E9%93%BE%E8%B7%AF/1776931158160.png" /></p>
+<ul>
+<li>高频头上标有对应标识</li>
+</ul>
+<p><img alt="1775028326336" src="../image/%E5%87%86%E5%A4%87%E9%80%9A%E4%BF%A1%E9%93%BE%E8%B7%AF/1775028326336.png" /></p>
+<ul>
+<li>对应拧紧天线，确保连接稳定</li>
+</ul>
+<p><img alt="1776930853097" src="../image/%E5%87%86%E5%A4%87%E9%80%9A%E4%BF%A1%E9%93%BE%E8%B7%AF/1776930853097.png" /></p>
+<ul>
+<li>另一侧是NANO仓快拆口，用于连接遥控器</li>
+</ul>
+<p><img alt="1776930989508" src="../image/%E5%87%86%E5%A4%87%E9%80%9A%E4%BF%A1%E9%93%BE%E8%B7%AF/1776930989508.png" /></p>
+<ol>
+<li>通过type-c转type-c数据线将高频头与手机连接</li>
+</ol>
+<p><img alt="1775028603242" src="../image/%E5%87%86%E5%A4%87%E9%80%9A%E4%BF%A1%E9%93%BE%E8%B7%AF/1775028603242.png" /></p>
+<ul>
+<li>如图，使用TypeC To TypeC数据线连接高频头与手机即可</li>
+</ul>
+<p><img alt="1776930167243" src="../image/%E5%87%86%E5%A4%87%E9%80%9A%E4%BF%A1%E9%93%BE%E8%B7%AF/1776930167243.png" /></p>
+<ul>
+<li>可使用手机支架固定手机和遥控器，确保连接稳定</li>
+</ul>
+<p><img alt="1776929766117" src="../image/%E5%87%86%E5%A4%87%E9%80%9A%E4%BF%A1%E9%93%BE%E8%B7%AF/1776929766117.png" /></p>
+<p><img alt="1776929793599" src="../image/%E5%87%86%E5%A4%87%E9%80%9A%E4%BF%A1%E9%93%BE%E8%B7%AF/1776929793599.png" /></p>
+<h2 id="_4">软件准备</h2>
+<p><strong>手机连接</strong></p>
+<ul>
+<li>手机与高频头连接后，打开手机安卓版QGC软件，点击左上角图标，进入设置界面，下滑找到“通讯连接”选项，点击添加连接，连接类型选择“串口”，波特率改为“115200”</li>
+</ul>
+<p><img alt="1769508691645" src="../image/%E5%87%86%E5%A4%87%E9%80%9A%E4%BF%A1%E9%93%BE%E8%B7%AF/1769508691645.png" /></p>
+<p><img alt="1769508777312" src="../image/%E5%87%86%E5%A4%87%E9%80%9A%E4%BF%A1%E9%93%BE%E8%B7%AF/1769508777312.png" /></p>
+<p><img alt="1775029383524" src="../image/%E5%87%86%E5%A4%87%E9%80%9A%E4%BF%A1%E9%93%BE%E8%B7%AF/1775029383524.png" /></p>
+<ul>
+<li>添加好名称后，点击保存，再点击连接，即可自动连接上地面站</li>
+</ul>
+<p><img alt="1775029501552" src="../image/%E5%87%86%E5%A4%87%E9%80%9A%E4%BF%A1%E9%93%BE%E8%B7%AF/1775029501552.png" /></p>
+<p><strong>电脑连接</strong></p>
+<ul>
+<li>若想连接电脑使用QGC软件，需要先下载<a href="https://espjs.cn/driver">CH340驱动</a></li>
+</ul>
+<p><img alt="1775030599071" src="../image/%E5%87%86%E5%A4%87%E9%80%9A%E4%BF%A1%E9%93%BE%E8%B7%AF/1775030599071.png" /></p>
+<ul>
+<li>电脑与高频头连接后，打开电脑版QGC软件，点击左上角图标，进入设置界面，下滑找到“通讯连接”选项，点击添加连接，连接类型选择“串口”，波特率改为“115200”，串口选用连接到高频头后出现的串口，如图：com20</li>
+</ul>
+<p><img alt="1775033535607" src="../image/%E5%87%86%E5%A4%87%E9%80%9A%E4%BF%A1%E9%93%BE%E8%B7%AF/1775033535607.png" /></p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
